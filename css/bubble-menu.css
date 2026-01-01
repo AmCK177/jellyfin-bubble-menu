@@ -1,0 +1,114 @@
+/*
+====================================
+ Jellyfin Bubble Menu
+ Autor: TU NOMBRE O NICK
+ Versión: 1.0.0
+ Tipo: Complemento CSS
+ Compatible: Jellyfin 10.x
+====================================
+*/.navMenuOption {
+    position: relative;
+    overflow: hidden !important;
+    border-radius: 35px !important;
+    margin: 6px 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    outline: none !important;
+}
+.navMenuOption .navMenuOptionText,
+.navMenuOption .navMenuOptionIcon {
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+@media (hover: hover), screen and (min-width: 1025px) {
+    .navMenuOption:hover,
+    .navMenuOption:focus {
+        background-color: rgba(255, 255, 255, 0.18) !important;
+        transform: scale(1.1);
+        z-index: 10;
+
+        box-shadow:
+            0 0 10px rgba(255, 255, 255, 0.35),
+            0 0 25px rgba(255, 255, 255, 0.25);
+    }
+
+    .navMenuOption:hover .navMenuOptionText,
+    .navMenuOption:focus .navMenuOptionText {
+        transform: scale(1.1);
+        color: #ffffff !important;
+    }
+
+    .navMenuOption::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(255, 255, 255, 0.15) 40%,
+            rgba(255, 255, 255, 0.05) 70%,
+            transparent 100%
+        );
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.55s ease, height 0.55s ease;
+        pointer-events: none;
+    }
+
+    .navMenuOption:hover::after,
+    .navMenuOption:focus::after {
+        width: 360px;
+        height: 360px;
+    }
+}
+
+@media (hover: none) {
+    .navMenuOption:hover {
+        transform: none;
+        background: transparent !important;
+        box-shadow: none;
+    }
+
+    .navMenuOption:active {
+        background-color: rgba(255, 255, 255, 0.25) !important;
+        transform: scale(0.96);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
+    }
+
+    .navMenuOption:active::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.45);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: rippleMobile 0.5s ease-out forwards;
+    }
+}
+
+/* Animación móvil */
+@keyframes rippleMobile {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0.6;
+    }
+    to {
+        width: 260px;
+        height: 260px;
+        opacity: 0;
+    }
+}
+
+.navMenuOption-selected {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(255, 255, 255, 0.25);
+}
